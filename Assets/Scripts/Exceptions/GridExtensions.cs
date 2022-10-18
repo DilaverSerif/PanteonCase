@@ -20,15 +20,22 @@ public static class GridExtensions
             
             if (current == targetCell)
             {
+                
                 var currentCell = targetCell;
                 var path = new List<Cell>();
+
+                var test = 0;
                 
-                while (currentCell != startCell)
+                while (currentCell != startCell & test < 100)
                 {
                     path.Add(currentCell);
                     currentCell = currentCell.NextCell;
+                    test++;
                 }
-
+                
+                if(test >= 100)
+                    Debug.LogError("Pathfinding error");
+                
                 foreach (var thePath in path)
                 {
                     thePath.SetColor(Color.green);
